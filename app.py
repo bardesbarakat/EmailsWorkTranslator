@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 from google import genai
 import io
+import time
 
-# إعداد الاتصال بالذكاء الاصطناعي
 API_KEY = "AQ.Ab8RN6IOwIHD_HyXjhlGqVdDmJmYFggVzgTVs2FhbmTXLUa4Jg"
 client = genai.Client(api_key=API_KEY)
 
@@ -31,7 +31,7 @@ def check_name_match(ar_name, en_name):
         result = response.text.strip()
         return "صحيح" if "صحيح" in result else "خاطئ"
     except Exception as e:
-        return "خطأ في الفحص"
+        return f"خطأ: {str(e)}"
 
 st.title("🤖 وكيل الذكاء الاصطناعي لفحص مطابقة الأسماء")
 st.write("ارفع ملف الإكسل، وسيقوم النظام بفحصه وإصدار ملف النتيجة جاهزاً للتحميل.")
@@ -45,7 +45,6 @@ if uploaded_file is not None:
     if st.button("🚀 بدء الفحص الآن"):
         results = []
         total_names = len(df)
-        
         progress_bar = st.progress(0)
         status_text = st.empty()
 
@@ -54,6 +53,9 @@ if uploaded_file is not None:
             match_status = check_name_match(row['الاسم'], row['الاسم باللغة الانجليزية'])
             results.append(match_status)
             progress_bar.progress((index + 1) / total_names)
+            
+            # تأخير 4 ثوانٍ لتجنب حظر الطلبات السريعة
+            time.sleep(4)
             
         df['حالة المطابقة'] = results
         status_text.text("✅ تم الانتهاء من الفحص بنجاح!")
