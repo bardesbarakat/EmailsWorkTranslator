@@ -56,7 +56,11 @@ st.markdown("""
 <hr>
 """, unsafe_allow_html=True)
 
-st.warning("⚠️ **تنبيه هام:** الفحص بياخد شوية وقت عشان براجع اسم اسم بضمير ومبنحبش الكروتة.. فاعمل كوباية شاي واصبر عليا شوية لحد ما أخلص! ☕⏳", icon="⏳")
+st.markdown("""
+<div style="background-color: rgba(255, 215, 0, 0.15); padding: 16px; border-radius: 8px; font-size: 18px; direction: rtl; text-align: right; border-right: 5px solid #ffc107; margin-bottom: 20px;">
+    ⏳ <b>تنبيه هام:</b> الفحص بياخد شوية وقت عشان براجع اسم اسم بضمير ومبنحبش الكروتة.. فاعمل كوباية شاي واصبر عليا شوية لحد ما أخلص! ☕
+</div>
+""", unsafe_allow_html=True)
 uploaded_file = st.file_uploader("اختر ملف الإكسل (بصيغة xlsx)", type=["xlsx"])
 
 if uploaded_file is not None:
