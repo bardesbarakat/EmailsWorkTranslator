@@ -4,8 +4,7 @@ from google import genai
 import io
 import time
 
-# احذفي هذا السطر تماماً:
-# API_KEY = "AQ.Ab8RN6IOwIHD_HyXjhlGqVdDmJmYFggVzgTVs2FhbmTXLUa4Jg"
+
 
 # وضعي هذا السطر بدلاً منه ليقرأ المفتاح بشكل سري:
 API_KEY = st.secrets["GEMINI_API_KEY"]
